@@ -15,7 +15,7 @@ class get_embedding():
     def __init__(self, model):
         self.model = model
 
-    def _convnet_model_(self):
+    def _convnet_model(self):
         vgg_model = VGG16(weights=None, include_top=False)
         x = vgg_model.output
         x = GlobalAveragePooling2D()(x)
@@ -28,7 +28,7 @@ class get_embedding():
         return convnet_model
 
     def _deep_rank_model(self):
-        convnet_model = self._convnet_model_()
+        convnet_model = self._convnet_model()
         first_input = Input(shape=(228,228,3))
         first_conv = Conv2D(96, kernel_size=(8, 8),strides=(16,16), padding='same')(first_input)
         first_max = MaxPool2D(pool_size=(3,3),strides = (2,2),padding='same')(first_conv)
